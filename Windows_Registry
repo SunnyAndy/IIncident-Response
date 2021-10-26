@@ -4,3 +4,23 @@ https://code.google.com/archive/p/volatility/wikis/CommandReference.wiki#Registr
 
 
 GSecDump
+
+
+General Idea : 
+SAM 
+Location: C:\windows\sustem32\config 
+
+SYSTEM 
+Location  
+%systemroot%\system32\config
+C:\windows\sustem32\config 
+
+
+
+what you can get in the  HIVE
+
+
+SOFTWARE
+Location:C:\windows\sustem32\config 
+
+
