@@ -1,0 +1,86 @@
+REM Andy's script for Windows  evidence collection  
+::  this file is used to Digital Forensics 
+@echo off
+
+
+
+
+
+
+
+echo   AppCompatCacheParser  collection 
+::　　AppCompatCacheParser.exe  
+:: AppAmache collection Application Compatibility Cache allows for older applications to be run on newer versions of Windows. 
+:: When an executable is found, Windows determines how best to run the program and stores that data.
+:: AppCompatCache can be used to determine what was run.
+
+AppCompatCacheParser.exe --csv .\Result\AppCompatCacheParser_result\ 
+
+echo AmeCache Collection 
+
+
+AmcacheParser.exe -f %systemroot%\AppCompat\Programs\Amcache.hve --csv .\Result\AmcacheParser_result\
+
+
+echo  JLECmd  log Collection 
+::  JLECmd  Jumplists store critical information about files and folders that have been used in Windows. 
+::Among other things, Jumplists contain information about the application used to open target files and folders and store metadata specific to them.
+:: Those metadata contain details such as file name and location, dates and times, etc. JLECmd makes parsing this data simple and quick.
+
+JLECmd.exe  -d %Appdata%\Microsoft\Windows\Recent\AutomaticDestinations    --csv  .\Result\JLE
+echo 
+
+
+
+echo RBCmd.exe log collection 
+:: RBCmd.exe   
+::When a user deletes a file, it is sent to the Recycle Bin. 
+::During that process, it is renamed. For example, if cat.jpg was deleted, the deleted file would have aname such as $R7YQ28P.jpg. 
+::The $R prefix means that it contains the content (Resource) of the original file. 
+::In addition to the $R file, a new corresponding $I (Information) file is created in the Recycle Bin. 
+::The $I file contains the information about the original location of the file and the date and time of deletion. 
+::RBCmd takes this data and presents it in a human-readable format.
+
+RBCmd.exe -d %systemdrive%\$Recycle.Bin --csv .\Result\RecycleBin
+
+
+echo event log collection 
+:: EvtxECmd.exe
+:: 
+:: 
+
+.\EvtxExplorer\EvtxECmd.exe  -d  %systemroot%\system32\winevt\logs --csv .\Result\EventLog\
+
+
+
+echo shell bag log collection 
+::shellbag  USrclass.dat and NTUser.dat 
+.\ShellBagsExplorer\SBECmd.exe    -d %systemdrive%  --csv .\Result\Shellbag\
+
+
+echo LNK File explore 
+:: LNK File explore 
+LECmd.exe  -d  %systemdrive%  --csv .\Result\LECMD
+
+
+
+echo WxTcmd.exe 
+:: Time line
+WxTCmd.exe  -f  %UserProfile%\Appdata\Local\ConnectedDevicesPlatform\L.Alex\ActivitiesCache.db  --csv .\Result\WxTCmd
+
+
+
+echo  The following is set for collecting  anaything about in Registry 
+:: usage
+
+
+echo 
+RegistryExplorer\RECmd.exe  --bn RegistryExplorer\BatchExamples\InstalledSoftware.reb --d "F:\Windows\Andy_REG"     --csv  out
+::
+
+
+
+REM the Following is  wrote for windows server system 
+::  For Example SumECmd User Access Log Parser 
+::  
+
