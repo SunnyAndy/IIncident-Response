@@ -1,0 +1,244 @@
+echo off
+::Author : Andy MJIB
+
+%~d0    :: enter to the batch folder usually is int he USB drive    
+::cd \d %~d0
+
+echo "Usage %0 [oath_to_folder] if no [Path_to_folder]  the folder  is set to USBDrive\Log by default"
+IF "%1"=="" ( 
+SET OUTPUT_FOLDER=%~dp0\Log
+ ) else (
+SET OUTPUT_FOLDER=%~dp0\%1
+)
+mkdir %OUTPUT_FOLDER%  
+mkdir %OUTPUT_FOLDER%\debug
+::configuration setting 
+SET ARCH=%PROCESSOR_ARCHITECTURE% 
+SET OS=%OS%
+
+SET RAW_COPY=""
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+	SET RAW_COPY="%~d0\Windows\7.Collect File Tools\RawCopy64.exe"
+) else (
+	SET RAW_COPY="%~d0Windows\7.Collect File Tools\RawCopy.exe"
+)
+set PATH=%PATH%;%~d0\Windows\5.SystemInternal\;"%~d0\Windows\6.Eriz Zermin\Get-ZimmermanTools"
+
+
+call :registry_copy
+call :event_log_collection
+call :registry_copy
+call :PreFetch
+call :Autorun
+call :user_profile
+call dynamic_log.bat
+call Script.bat
+call :shimcache
+call :signtool
+
+
+
+echo "log is finishined   "
+
+pause 
+EXIT /B 0
+
+
+:shimcache
+echo collectiong the shimcache file
+"%~d0\Windows\7.Collect File Tools\ShimCacheParser_PY.exe" -l -o %OUTPUT_FOLDER%\Shimcache.csv
+
+EXIT /B 0
+
+
+:event_log_collection 
+echo collect all the eventlog ..........
+mkdir %OUTPUT_FOLDER%\eventlog
+:: for windows 10
+xcopy  %windir%\system32\winevt\Logs\* %OUTPUT_FOLDER%\eventlog /I /Y & echo xcopy EVTX >> %OUTPUT_FOLDER%\debug\debug.txt
+:: for windows 7 
+:: for windows xp 
+:: for server 2008 
+:: for server 2012 
+:: for server 2016 
+
+EXIT /B 0
+
+
+:registry_copy 
+echo collect SAM SECURITY SOFTWARE and SYSTEM  registry hive .....
+mkdir "%OUTPUT_FOLDER%\Registry"
+:: for windows 10
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\default" /OutputPath:"%OUTPUT_FOLDER%\Registry"  &  echo RAWCOPY default >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\default.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry"  &  echo RAWCOPY default.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\default.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry"  &  echo RAWCOPY default.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SYSTEM" /OutputPath:"%OUTPUT_FOLDER%\Registry"   &  echo RAWCOPY SYSTEM >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SYSTEM.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SYSTEM.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+    %RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SYSTEM.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry"   &  echo RAWCOPY SYSTEM.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SOFTWARE" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SOFTWARE >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SOFTWARE.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SOFTWARE.log1 >> %OUTPUT_FOLDER%\debug\debug.tx
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SOFTWARE.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SOFTWARE.log2 >> %OUTPUT_FOLDER%\debug\debug.tx
+	
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SECURITY" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SECURITY >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SECURITY.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SECURITY.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SECURITY.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SECURITY.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SAM" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SAM >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SAM.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SAM.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%SYSTEMROOT%\system32\config\SAM.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY SAM.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+	mkdir 		%OUTPUT_FOLDER%\Registry\Back
+	ROBOCOPY	%SYSTEMROOT%\system32\config\RegBack\  %OUTPUT_FOLDER%\Registry\Back\  &  echo RAWCOPY RegBack* >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+	%RAW_COPY%  /FileNamePath:"%USERPROFILE%\NTUSER.DAT" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY NTUSER.DAT >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%USERPROFILE%\NTUSER.DAT.log1" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY NTUSER.DAT.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:"%USERPROFILE%\NTUSER.DAT.log2" /OutputPath:"%OUTPUT_FOLDER%\Registry" &  echo RAWCOPY NTUSER.DAT.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+
+	
+	
+	%RAW_COPY%  /FileNamePath:"%SYSTEMDRIVE%\Windows\appcompat\Programs\Amcache.hve" /OutputPath:"%OUTPUT_FOLDER%\Registry" -allattr &  echo RAWCOPY Amcache.hve >> %OUTPUT_FOLDER%\debug\debug.txt
+	%RAW_COPY%  /FileNamePath:%windir%\AppCompat\Programs\Amcache.hve.log1 /OutputPath:"%OUTPUT_FOLDER%\Registry" -allattr &  echo RAWCOPY Amcache.hve.log1 >> %OUTPUT_FOLDER%\debug\debug.txt
+    %RAW_COPY%  /FileNamePath:%windir%\AppCompat\Programs\Amcache.hve.log2 /OutputPath:"%OUTPUT_FOLDER%\Registry" -allattr &  echo RAWCOPY Amcache.hve.log2 >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+EXIT /B 0
+
+
+:: user profile 
+:user_profile
+mkdir %OUTPUT_FOLDER%\ntuser
+FOR /F "tokens=*" %%G IN ('dir /b ^"%SystemDrive%\Users\*^"') DO echo %%G>> %OUTPUT_FOLDER%\ntuser\list.txt
+type %OUTPUT_FOLDER%\ntuser\list.txt | find /V /I " " >> %OUTPUT_FOLDER%\ntuser\list2.txt
+                  
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO mkdir %OUTPUT_FOLDER%\ntuser\%%G
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\NTUSER.DAT /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G 
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\NTUSER.DAT.LOG1 /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G 
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\NTUSER.DAT.LOG2 /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G 
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\AppData\Local\Microsoft\Windows\UsrClass.dat /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\AppData\Local\Microsoft\Windows\UsrClass.dat.LOG1 /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G
+FOR /F "eol= delims=" %%G IN (%OUTPUT_FOLDER%\ntuser\list2.txt) DO %RAW_COPY% /FileNamePath:%SystemDrive%\Users\%%G\AppData\Local\Microsoft\Windows\UsrClass.dat.LOG2 /OutputPath:%OUTPUT_FOLDER%\ntuser\%%G
+
+EXIT /B 0
+::  prefetch 
+:: 
+:PreFetch
+:: win 10
+    echo %date% %time% prefetch...start >> %OUTPUT_FOLDER%\debug\debug.txt
+    mkdir %OUTPUT_FOLDER%\prefetch
+    mkdir %OUTPUT_FOLDER%\prefetch\files
+    echo fetch prefetch...start   Please Wait
+    dir /tw /od "%windir%\Prefetch"> %OUTPUT_FOLDER%\prefetch\prefetch_lastModified.txt
+    dir /tc /od "%windir%\Prefetch"> %OUTPUT_FOLDER%\prefetch\prefetch_created.txt
+    dir /ta /od "%windir%\Prefetch"> %OUTPUT_FOLDER%\prefetch\prefetch_lastAccessed.txt
+	xcopy /H %WINDIR%\Prefetch %OUTPUT_FOLDER%\prefetch\files /E /Y >>%OUTPUT_FOLDER%\Prefetch\copylog.txt
+    echo %date% %time% prefetch...done >> %OUTPUT_FOLDER%\debug\debug.txt
+	
+
+EXIT /B 0 
+
+
+:Autorun
+mkdir %OUTPUT_FOLDER%\autoruns
+echo %date% %time% Autorun ... start >> %OUTPUT_FOLDER%\debug\debug.txt
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+	"%~d0\Windows\5.SystemInternal\SysinternalsSuite\Autoruns64.exe" /accepteula -e -a "%OUTPUT_FOLDER%\autoruns\autoruns.arn"
+) else (
+	"%~d0\Windows\5.SystemInternal\SysinternalsSuite\Autorunsc.exe" /accepteula -e -v -a "%OUTPUT_FOLDER%\autoruns\autoruns.arn"
+)
+
+
+EXIT /B 0
+
+
+:signtool
+REM=======================  SIGN TOOL =======================
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\*.exe 2> "%OUTPUT_FOLDER%\windows_exe.txt"
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\*.dll 2> "%OUTPUT_FOLDER%\windows_dll.txt"
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\system32\*.exe 2> "%OUTPUT_FOLDER%\system32_exe.txt"
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\system32\*.dll 2> "%OUTPUT_FOLDER%\system32_dll.txt"
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\syswow64\*.exe 2> "%OUTPUT_FOLDER%\syswow64_exe.txt"
+echo "Collect File Tools\signtool.exe" verify /a /q %SystemRoot%\syswow64\*.dll 2> "%OUTPUT_FOLDER%\syswow64_dll.txt"
+
+:: Start of script
+::
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\*.exe`) do (call :CheckSignature "%SystemRoot%\%%i")
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\*.dll`) do (call :CheckSignature "%SystemRoot%\%%i")
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\system32\*.exe`) do (call :CheckSignature "%SystemRoot%\system32\%%i")
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\system32\*.dll`) do (call :CheckSignature "%SystemRoot%\system32\%%i")
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\syswow64\*.exe`) do (call :CheckSignature "%SystemRoot%\syswow64\%%i")
+for /f "usebackq tokens=*" %%i in (`^dir /B %SystemRoot%\syswow64\*.dll`) do (call :CheckSignature "%SystemRoot%\syswow64\%%i")
+
+ 
+EXIT /B 0
+
+
+:CheckSignature
+"%~d0\Windows\7.Collect File Tools\signtool.exe" verify /a /q "%~1"
+if errorlevel 1 echo %~1 >> "%OUTPUT_FOLDER%\signtool.txt"
+if errorlevel 2 echo %~1 >> "%OUTPUT_FOLDER%\signtool.txt"
+
+EXIT /B 0
+
+
+
+
+:: $MFT could not be extract in windows 10 using the RawCopy , please use the ftkimager  :) 
+
+:mft
+    echo %date% %time% mft...start >> %OUTPUT_FOLDER%\debug\debug.txt
+    mkdir %OUTPUT_FOLDER%\MFT
+    echo mft...start   Please Wait
+    wmic logicaldisk get caption , filesystem  | find "NTFS"  > %OUTPUT_FOLDER%\MFT\dirvers.txt
+    for /F "eol= delims=:" %%D in (%OUTPUT_FOLDER%\MFT\dirvers.txt) do ( %RAW_COPY%  /FileNamePath:%%D:0  /OutputPath:E:\)   2>>%OUTPUT_FOLDER%\debug\mft_debug.txt
+    ::tools\hmft.exe -d %SystemDrive% %Full_PATH%\MFT\system_mft.dat
+    ::tools\hmft.exe -d d: %Full_PATH%\MFT\D_mft.dat
+    ::tools\hmft.exe -d e: %Full_PATH%\MFT\E_mft.dat
+    ::double check mft is OK
+    ::if exist %Full_PATH%\MFT\C_mft.dat goto :mft_OK
+    ::tools\hmft.exe -d c: %Full_PATH%\MFT\C_mft.dat
+    ::if exist %Full_PATH%\MFT\D_mft.dat goto :mft_OK
+    ::tools\hmft.exe -d d: %Full_PATH%\MFT\D_mft.dat
+    ::if exist %Full_PATH%\MFT\E_mft.dat goto :mft_OK
+    ::tools\hmft.exe -d e: %Full_PATH%\MFT\E_mft.dat
+    :mft_OK
+    echo %date% %time% mft...done >> %Full_PATH%\debug\debug.txt
+
+
+:://OutputName:%%D_bin //OutputPath:E:\Log
+
+
+
+::IF "%OS%"=="Windows_NT" (
+::)else (
+::echo "OS is not supported  bye "
+::pause
+::exit
+::)
+
+
+
+
+
+
+:: memory dump 
+
+
+
+
+:: file collection 
+
+
+:: System information collecting 
+
+:: Psloggedon.exe 
+
+:: echo %PATH%
+
+
+
+
+:: echo %~d1%~p1%~n1%~x1
+
+:: echo %~$PATH:1
