@@ -31,3 +31,15 @@ reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5
+
+
+
+
+
+有關機馬小知識
+在HKEY_LOCAL_MACHINE/SYSTEM下，存在著CurrentControlSet、ControlSet001、 ControlSet002這三個子鍵，他們是與系統啟動有關的三個項，裡面記錄著操作系統配置的信息，包括了系統控制、驅動、服務等信息。
+ControlSet001是系統默認的配置信息，但是為了避免序號混亂，windows啟動時會從ControlSet001複製一份副本，作為操作系統當前的配置信息，也就是CurrentControlSet。那麼ControlSet002是什麼呢？當操作系統每成功啟動一次，都將CurrentControlSet和ControlSet001中的配置信息複製到ControlSet002中，ControlSet002就成了“最近一次成功啟動的配置信息”，也就是啟動時按F8之後，你所看到的選項“最後一次正常啟動的配置”。
+
+
+另外 最近發現好用的 機碼解析器
+https://github.com/keydet89/RegRipper3.0/tree/master/plugins
