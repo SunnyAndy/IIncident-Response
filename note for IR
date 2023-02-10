@@ -1,0 +1,5 @@
+MFT analysis : Eric Zimmer 
+MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv 
+
+
+event explore 會自動調整時區 
