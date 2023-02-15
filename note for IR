@@ -3,3 +3,8 @@ MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv
 
 
 event explore 會自動調整時區 
+
+
+
+TOMCAT 架設網站 相關 調查 
+https://docs.lucee.org/guides/installing-lucee/windows/installing-apache-tomcat-on-windows.html 
