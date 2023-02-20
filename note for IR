@@ -15,5 +15,14 @@ Tomcat appache log location
 \Program Files\Apache Software Foundation\Tomcat 7.0\logs\localhost.2022-12-05.log
 
 
+
+IIS config location
+%WinDir%\System32\Inetsrv\Config   
+usally the %winDir%  is C:\Windows\
+
+
+
+
+
 mssql 
 https://www.youtube.com/watch?v=JQSLryq07Rw
