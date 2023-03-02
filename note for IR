@@ -20,8 +20,11 @@ Java E Log location
 
 
 Java E for 帳號密碼到 database 的位置:
-\$WEB_ROOT\Webpac\WEB-INF\classes\jdbc.properties
+\$WEB_ROOT\$APPNAME\WEB-INF\classes\jdbc.properties
 https://www.cnblogs.com/BruceKing/p/13755591.html
+
+Java Web 網站目錄架構:
+https://blog.csdn.net/escore/article/details/106035889
 
 
 IIS config location
