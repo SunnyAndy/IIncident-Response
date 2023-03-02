@@ -19,6 +19,10 @@ Java E Log location
 \$WEB_ROOT\Logs\LoginUser.log 
 
 
+Java E for 帳號密碼到 database 的位置:
+\$WEB_ROOT\Webpac\WEB-INF\classes\jdbc.properties
+https://www.cnblogs.com/BruceKing/p/13755591.html
+
 
 IIS config location
 %WinDir%\System32\Inetsrv\Config   
