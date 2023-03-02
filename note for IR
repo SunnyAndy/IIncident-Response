@@ -2,8 +2,7 @@ MFT analysis : Eric Zimmer
 MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv 
 
 
-event explore 會自動調整時區 
-
+event explore    會 自動 調整 時區 
 
 
 TOMCAT 架設網站 相關 調查 
@@ -15,14 +14,17 @@ Tomcat appache log location
 \Program Files\Apache Software Foundation\Tomcat 7.0\logs\localhost.2022-12-05.log
 
 
+Java E Log location 
+
+\$WEB_ROOT\Logs\LoginUser.log 
+
+
 
 IIS config location
 %WinDir%\System32\Inetsrv\Config   
 usally the %winDir%  is C:\Windows\
 
 
-
-
-
 mssql 
 https://www.youtube.com/watch?v=JQSLryq07Rw
+
