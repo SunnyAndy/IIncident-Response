@@ -1,35 +1,63 @@
+
+********************************************   擷取、分析指令參考 ****************************************
 MFT analysis : Eric Zimmer 
 MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv 
-
 
 event explore    會 自動 調整 時區 
 
 
+
+
+**********************************   TOMCAT  架設網站 調查 參考 *********************************************
 TOMCAT 架設網站 相關 調查 
 https://docs.lucee.org/guides/installing-lucee/windows/installing-apache-tomcat-on-windows.html 
-
 
 Tomcat appache log location 
 
 \Program Files\Apache Software Foundation\Tomcat 7.0\logs\localhost.2022-12-05.log
 
+********************************************************************************************************
 
+
+
+
+
+
+************************************   Java 架站網站調查 參考 *********************************************
 Java E Log location 
-
 \$WEB_ROOT\Logs\LoginUser.log 
-
-
 Java E for 帳號密碼到 database 的位置:
 \$WEB_ROOT\$APPNAME\WEB-INF\classes\jdbc.properties
 https://www.cnblogs.com/BruceKing/p/13755591.html
-
 Java Web 網站目錄架構:
 https://blog.csdn.net/escore/article/details/106035889
+********************************************************************************************************
 
 
+
+
+
+
+************************************   IIS log  參考 ***************************************************
 IIS config location
 %WinDir%\System32\Inetsrv\Config   
 usally the %winDir%  is C:\Windows\
+
+********************************************************************************************************
+
+
+
+************************************   Windows Memory Capture   參考 ************************************
+龍哥推薦:
+https://belkasoft.com/ram-capture
+
+File  MyDrive:   -->  later to modified 
+
+
+
+
+
+
 
 
 mssql 
