@@ -55,6 +55,19 @@ File  MyDrive:   -->  later to modified
 
 
 
+Autorun
+TcpView 
+ProcessExplore 
+
+
+log gathering SOP 
+1.MFT
+2.Event log 
+3.registry collection
+4.Shimcache cache
+5.AmCache 
+6.
+
 
 
 
