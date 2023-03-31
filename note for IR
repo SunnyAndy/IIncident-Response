@@ -6,6 +6,15 @@ MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv
 event explore    會 自動 調整 時區 
 
 
+Amcache analysis :
+AmcacheParser.exe -f "C:\Temp\amcache\AmcacheWin10.hve" --csv C:\temp
+
+
+
+
+
+Shimcache cache analysis :
+AppCompatCacheParser.exe -f  SYSTEM  --csv E:\manila_analysis\ --csf E:\manila_analysis\shimcache.csv
 
 
 **********************************   TOMCAT  架設網站 調查 參考 *********************************************
