@@ -48,6 +48,6 @@ https://github.com/keydet89/RegRipper3.0/tree/master/plugins
 
 https://ithelp.ithome.com.tw/m/articles/10262549
 
-
+然後這個鍵等於HKLM\Software\Classes，但在HKEY_CURRENT_USER\Software\Classes也有一樣功能，你可以從名稱輕易了解，他是當前使用者的設置跟本機設置的關係，兩個設置可能有衝突的設定，這時候使用者自定義的設置的優先級當然比較高，所以我們說，HKCU\Software\Classes會優先於HKLM\Software\Classes，而通常的我們要改寫設定也是改寫HKCU下的。
 
 
