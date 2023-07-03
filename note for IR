@@ -42,10 +42,18 @@ Java Web 網站目錄架構:
 https://blog.csdn.net/escore/article/details/106035889
 ********************************************************************************************************
 
+**************************************  Powershell log location ref *********************************
+%userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+%appdata%\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
+原文網址：https://kknews.cc/code/qr52b2r.html
 
 
 
+****************************************** certutil.exe log location **********************************
 
+
+http://techpoison.blogspot.com/2008/12/how-to-enable-diagnostic-debug-logging_6401.html
 
 ************************************   IIS log  參考 ***************************************************
 IIS config location
