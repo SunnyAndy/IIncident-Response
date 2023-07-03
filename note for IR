@@ -53,7 +53,7 @@ IIS config location
 usally the %winDir%  is C:\Windows\
 
 
-%SystemDrive%inetpub\logs\LogFiles
+%SystemDrive%\inetpub\logs\LogFiles
 
 ********************************************************************************************************
 
