@@ -24,6 +24,9 @@ JLECmd.exe -d  E:\0719\ --csv  E:\0719\analysis\JLECMD   --csvf E:\0719\analysis
 
 LECmd.exe -d  E:\0719\Collection_SYOUNG2\Recent --csv E:\0719\analysis\lnk\   --csvf E:\0719\analysis\lnk\lnk.csv
 
+prefetch
+PECmd.exe -d   "E:\0719\Collection_SYOUNG2\Prefetch"   --csv E:\0719\analysis\prefetch --csvf E:\0719\analysis\prefetch\pre.csv
+
 **********************************   TOMCAT  架設網站 調查 參考 *********************************************
 TOMCAT 架設網站 相關 調查 
 https://docs.lucee.org/guides/installing-lucee/windows/installing-apache-tomcat-on-windows.html 
