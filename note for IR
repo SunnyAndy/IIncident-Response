@@ -16,6 +16,10 @@ AmcacheParser.exe -f "C:\Temp\amcache\AmcacheWin10.hve" --csv C:\temp
 Shimcache cache analysis :  預設 UTC +0 
 AppCompatCacheParser.exe -f  SYSTEM  --csv E:\manila_analysis\ --csf E:\manila_analysis\shimcache.csv
 
+說明:  Automatic and Custom Destinations jump list parser
+
+
+JLECmd.exe -d  E:\0719\ --csv  E:\0719\analysis\JLECMD   --csvf E:\0719\analysis\JLECMD\jls.csv
 
 **********************************   TOMCAT  架設網站 調查 參考 *********************************************
 TOMCAT 架設網站 相關 調查 
