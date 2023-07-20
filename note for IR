@@ -31,6 +31,8 @@ recycle bin
 RBCmd.exe -d  E:\0719\Collection_SYOUNG2\RecycleBin   --csv E:\0719\analysis\recycle  --csvf E:\0719\analysis\recycle\recycle.csv
 
 
+shell bag
+SBECmd.exe   -d E:\0719\Collection_SYOUNG2\Registry\  --csv E:\0719\analysis\SBESHELL\  --csvf E:\0719\analysis\SBESHELL\sbeshell.csv
 **********************************   TOMCAT  架設網站 調查 參考 *********************************************
 TOMCAT 架設網站 相關 調查 
 https://docs.lucee.org/guides/installing-lucee/windows/installing-apache-tomcat-on-windows.html 
