@@ -34,7 +34,7 @@ RBCmd.exe -d  E:\0719\Collection_SYOUNG2\RecycleBin   --csv E:\0719\analysis\rec
 shell bag
 SBECmd.exe   -d E:\0719\Collection_SYOUNG2\Registry\  --csv E:\0719\analysis\SBESHELL\  --csvf E:\0719\analysis\SBESHELL\sbeshell.csv
 
-srum
+srum   「SRUM: Forensic Analysis of Windows System Resource Utilization Monitor」
 SrumECmd.exe -d  "E:\0719\Collection_SYOUNG2\SRUM"   --csv E:\0719\analysis\SRUM  --csvf E:\0719\analysis\SRUM\Srum.csv
 **********************************   TOMCAT  架設網站 調查 參考 *********************************************
 TOMCAT 架設網站 相關 調查 
