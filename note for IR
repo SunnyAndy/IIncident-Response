@@ -47,6 +47,17 @@ Tomcat appache log location
 ********************************************************************************************************
 
 
+
+
+NTFS time statm
+
+$STANDARD_INFO can be modified by user level processes like timestomp. (0x10)
+$FILE_NAME can only be modified by the system kernel.  (0x30)
+
+
+
+
+
 ******************************* APACHE LOG *********************
 https://www.cnblogs.com/-mo-/p/11395470.html
 
