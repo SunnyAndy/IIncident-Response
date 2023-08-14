@@ -21,6 +21,8 @@ AppCompatCacheParser.exe -f  SYSTEM  --csv E:\manila_analysis\ --csf E:\manila_a
 
 JLECmd.exe -d  E:\0719\ --csv  E:\0719\analysis\JLECMD   --csvf E:\0719\analysis\JLECMD\jls.csv
 
+https://github.com/EricZimmerman/JumpList/blob/master/JumpList/Resources/AppIDs.txt
+
 
 LECmd.exe -d  E:\0719\Collection_SYOUNG2\Recent --csv E:\0719\analysis\lnk\   --csvf E:\0719\analysis\lnk\lnk.csv
 
