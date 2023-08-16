@@ -1,3 +1,12 @@
+*****************************************  SID 對照 **********************************************
+registry software 
+\Microsoft\Windows NT\CurrentVersion\ProfileList
+如果再機季上面可以這樣
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+
+
+
+
 
 ********************************************   擷取、分析指令參考 ****************************************
 MFT analysis : Eric Zimmer 
