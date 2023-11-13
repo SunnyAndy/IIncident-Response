@@ -12,6 +12,13 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
 MFT analysis : Eric Zimmer 
 MFTECmd.exe -f "C:\Temp\SomeMFT" --csv "c:\temp\out" --csvf MyOutputFile.csv 
 
+Created (0x10) is the Standard Information (SI) creation timestamp. This can be modified by user level processes, for example, timestomping.
+Created (0x30) is the FileName (FN) creation timestamp. This can only be modified by the kernel, or tools leveraging the kernel, 
+which is a privileged and restricted portion of the operating system that contains software to interface directly with hardware 
+peripherals, implement security controls and schedule and control processes acting on behalf of a user.
+
+
+
 event explore    會 自動 調整 時區 
 
 
