@@ -1,0 +1,44 @@
+step1 
+transger pcapng to zng 
+command 
+ C:\Users\andrew\Downloads\brimcap-v1.6.0.windows-amd64\brimcap\brimcap.exe  analyze   %CD%\%%x  > %CD%\%%x.zng  
+brimcap 載點:
+https://github.com/brimdata/brimcap/releases
+
+Step 2 if the pcap is too huge pleasw use the editpcap to divid it 
+"C:\Program Files (x86)\Wireshark\editcap.exe" -c 200000 input.pcap output.pcap 
+  ref :https://microchip.my.site.com/s/article/Split-large-PCAP-file-into-smaller-PCAP-files
+
+
+Step 3 run Zui 
+some basic command you may need 
+
+command: 
+conn | TCP  |  count()  by id.resp_h
+target IP
+
+
+
+# 統計 IP 地址及連接數並輸出
+local counts = conn | count() by id.resp_h;
+
+print "IP 地址\t連接數";
+foreach (counts) {
+    print fmt("%s\t%d", $key, $value);
+}
+
+
+
+
+Step4 focus on a specific IP or C2 
+ id.resp_h==159.138.AA.XX  or  id.orig_h==159.138.AA.XX 
+
+
+command backup 
+ id.resp_p==8080 |  id.resp_h!=59.124.120.177 | id.resp_h!=59.124.120.178 | count  () by  id.resp_h
+
+conn |  id.resp_h!=59.124.120.178  | proto=="smtp"
+conn |  id.resp_h!=59.124.120.178  | proto=="tcp"
+94.74.91.40 | id.resp_p==8080
+ id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40  |   conn_state=="OTH" 
+ id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40 | conn_state=="S3"
