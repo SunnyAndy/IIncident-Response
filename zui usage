@@ -6,7 +6,7 @@ brimcap 載點:
 https://github.com/brimdata/brimcap/releases
 
 Step 2 if the pcap is too huge pleasw use the editpcap to divid it 
-"C:\Program Files (x86)\Wireshark\editcap.exe" -c 200000 input.pcap output.pcap 
+"C:\Program Files\Wireshark\editcap.exe" -c 200000 input.pcap output.pcap 
   ref :https://microchip.my.site.com/s/article/Split-large-PCAP-file-into-smaller-PCAP-files
 
 
