@@ -42,3 +42,8 @@ conn |  id.resp_h!=59.124.120.178  | proto=="tcp"
 94.74.91.40 | id.resp_p==8080
  id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40  |   conn_state=="OTH" 
  id.resp_h==94.74.91.40 or  id.orig_h==94.74.91.40 | conn_state=="S3"
+
+
+
+more details:
+https://docs.zeek.org/en/current/scripts/base/protocols/conn/main.zeek.html
