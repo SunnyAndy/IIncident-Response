@@ -1,0 +1,42 @@
+First downlaid lzop windows version 
+https://www.lzop.org/ 
+Precompiled binaries are available for
+Linux/i386 (statically linked)
+  Windows (Win32 console version) 
+
+
+或是可以去 linux 用指令下載 sudo apt-get install lzop 
+
+
+第二步解壓縮
+
+  lzop -dv 
+
+  lzop -dv test.lzo 解压test.lzo得到test文件，输出详细信息，保留test.lzo不变
+
+
+  第三部 去載 vma extract 的 腳本 
+
+  https://github.com/jancc/vma-extractor/blob/master/vma.py 
+
+
+  python3 vma.py file.vma F:\myraw_folder 
+
+
+
+  第四部 vam to vmdk 
+
+  https://cloudbase.it/qemu-img-windows/ 
+  或是用 linxu sudo apt-get insta qemun 
+
+  qemu-img convert -f raw -O vmdk disk-drive-scsi0.raw disk-drive-scsi0.vmdk
+
+  convert -f raw -O vmdk
+
+  C:\Program Files\qemu>qemu-img.exe  convert -f raw -O vmdk  F:\SP_recovery\20\123\drive-scsi0  "F:\SP_recovery\20\123\drive.vmdk
+
+
+  
+
+
+  
