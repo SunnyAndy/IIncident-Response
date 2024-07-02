@@ -36,6 +36,8 @@ Linux/i386 (statically linked)
   C:\Program Files\qemu>qemu-img.exe  convert -f raw -O vmdk  F:\SP_recovery\20\123\drive-scsi0  "F:\SP_recovery\20\123\drive.vmdk
 
 
+debian 跑起來後 就可以用 vmware workstation  進行後製 活起來 vmdk 
+
   
 
 
