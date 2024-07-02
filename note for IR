@@ -2,7 +2,7 @@
 
 F:\Windows\Tools\LogAnalysis\LogParser>LogParser.exe  -i:iisw3c -o:csv "SELECT * FROM F:\FOLDER\W3SVC1\*.log WHERE cs-uri-stem='/ews/exchange.asmx' and c-ip not LIKE '192.168.%'" > F:\result.csv
 
-
+$5$vuNaeFemY6FyeXLO$vu0eTD/VlFxaJK/hrLQN0N5r9TpTARnzs3GRzj5LrPD
 
 
 
