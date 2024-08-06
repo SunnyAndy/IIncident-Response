@@ -47,3 +47,6 @@ conn |  id.resp_h!=59.124.120.178  | proto=="tcp"
 
 more details:
 https://docs.zeek.org/en/current/scripts/base/protocols/conn/main.zeek.html
+
+
+ fuse |  id.resp_p!=53  | id.resp_p!=123  | conn_state=="SF"   or  conn_state=="S1"  or conn_stat=="S2" or conn_stat=="S3" |   geo.orig.country_code!="TW"   or  geo.resp.country_code!="TW"
