@@ -1,0 +1,23 @@
+Step 1 
+download the ZSTD exe  
+https://github.com/facebook/zstd/releases/tag/v1.5.6 
+Command 
+zstd.exe -d  E:\SP_recovery\20240625_walker_jenifer\20241200\R.vma.zst -o result  
+
+Step2 
+dowmload the vma for windows at https://github.com/jancc/vma-extractor 
+command 
+python3 vma.py result  D:\outputfile
+
+
+
+Step3 
+  Dowload qemu-ing at https://cloudbase.it/qemu-img-windows/ 
+command
+  qemu-img.exe convert -f raw D:\ZSTD_DECOMPRESS\out.raw\drive-sata0  -O vmdk  D:\ZSTD_DECOMPRESS\out.vmdk
+
+
+
+
+
+  REF: https://github.com/astroicers/zst2vmdk/blob/main/convert.sh 
