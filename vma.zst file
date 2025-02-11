@@ -39,7 +39,7 @@ sudo chroot /media/test /bin/bash
 
 change the directory "/media/test" to the root directory and  using the  /bin/bash as  your bash 
 
-and  passwd root you can change the root passwd 
+and  passwd root  (1234)you can change the root passwd 
 
 
 
