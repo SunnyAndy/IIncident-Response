@@ -25,3 +25,21 @@ command
 
 if you lost your password 
 booting in a linux system and using chroot tool to get access
+
+
+here is a example for using chroot to change the  password 
+
+mount your target vmdk to your linux enviorment 
+say 
+you mount your target vmdk to   /media/test/  
+
+you can  use chroot to 
+
+sudo chroot /media/test /bin/bash     
+
+change the directory "/media/test" to the root directory and  using the  /bin/bash as  your bash 
+
+and  passwd root you can change the root passwd 
+
+
+
