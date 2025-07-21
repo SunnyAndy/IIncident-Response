@@ -1,3 +1,18 @@
+************************************** 用 tshark 快速 過濾 封包  ******************************
+H:\Temp_Packet>type checks.bat
+@echo off
+setlocal enabledelayedexpansion
+
+set TSHARK="C:\Program Files\Wireshark\tshark.exe"
+set PCAP_DIR=H:\Temp_Packet
+set TARGET_IP=211.79.190.23
+
+for %%f in (%PCAP_DIR%\hosting_0350*) do (
+    echo === Processing: %%f ===
+    %TSHARK% -r "%%f" -T fields -e ip.src -e ip.dst | findstr %TARGET_IP%
+)
+
+
 ***************************************  IIS 使用 logparser *****************************
 
 F:\Windows\Tools\LogAnalysis\LogParser>LogParser.exe  -i:iisw3c -o:csv "SELECT * FROM F:\FOLDER\W3SVC1\*.log WHERE cs-uri-stem='/ews/exchange.asmx' and c-ip not LIKE '192.168.%'" > F:\result.csv
