@@ -25,7 +25,7 @@ $5$vuNaeFemY6FyeXLO$vu0eTD/VlFxaJK/hrLQN0N5r9TpTARnzs3GRzj5LrPD
 *****************************************  SID 對照 **********************************************
 registry software 
 \Microsoft\Windows NT\CurrentVersion\ProfileList
-如果再機季上面可以這樣
+如果在機器上面可以這樣
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
 
 
