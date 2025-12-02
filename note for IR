@@ -171,3 +171,74 @@ userassist 只會紀錄 GUI 的 點擊過的檔案 ?
 mssql 
 https://www.youtube.com/watch?v=JQSLryq07Rw
 
+
+
+
+
+********************************************************************************************************
+
+********************************** DrayTek *************************************************************
+
+
+Syslog 如果要去找他的 PPTP 連線紀錄可以這樣
+
+
+<141>Jun 25 09:21:33 DrayTek: PPTP accept client from 103.666.59.7:33858 ...
+<141>Jun 25 09:21:33 DrayTek: [PPTP][Local][0:][@103.666.59.7] I/O read error, fast close  ----> 這邊是重點  會失敗
+<141>Jun 25 09:21:33 DrayTek: [PPTP][@103.666.59.7] pppShutdown 
+
+注意這邊是 失敗的情況 
+
+
+<141>Jun 24 17:11:33 DrayTek: PPTP accept client from 223.666.25.248:56151 ...
+<150>Jun 24 17:11:33 DrayTek: Local User (MAC=B2-PP-PP-PP-PP-26): 192.168.200.144:51785 -> 17.57.666.33:443 (TCP) close connection
+<158>Jun 24 17:11:33 DrayTek: PPP Start ()
+<141>Jun 24 17:11:33 DrayTek: PPP Start ()
+成功會變成這樣 
+
+然後 後面會分配 內往 IP 
+
+<141>Jun 24 18:41:14 DrayTek: [H2L][UP][PPTP][@2:sales_group from 223.666.25.248]
+<141>Jun 24 18:41:14 DrayTek: PPTP (VPN-0, sales_group) <== Protocol:IPCP(8021) ConfReq Identifier:0x0B  IP Address: 0 0 0 0 Primary Domain Name Server: 0 0 0 0 Secondary Domain Name Server: 0 0 0 0 ##
+<141>Jun 24 18:41:14 DrayTek: PPTP (VPN-0, sales_group) ==> Protocol:IPCP(8021) ConfNak Identifier:0x0B  IP Address: 192 168 200 201 Primary Domain Name Server: 192 168 210 31 Secondary Domain Name Server: 8 8 4 4 ##
+<141>Jun 24 18:41:14 DrayTek: PPTP (VPN-0, sales_group) <== Protocol:IPCP(8021) ConfAck Identifier:0x01  IP Address: 192 168 200 251 ##
+
+<141>Jun 24 18:41:14 DrayTek: ipcp offer requested IP: 192.168.200.201 from client...   
+<141>Jun 24 18:41:14 DrayTek: PPTP (VPN-0, sales_group) ==> Protocol:IPCP(8021) ConfAck Identifier:0x0C  IP Address: 192 168 200 201 Primary Domain Name Server: 192 168 210 31 Secondary Domain Name Server: 8 8 4 4 ##
+<158>Jun 24 18:41:14 DrayTek: IPCP Opening (VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19); Own IP Address : 192.168.200.251  Peer IP Address : 192.168.200.201
+<141>Jun 24 18:41:14 DrayTek: IPCP Opening (VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19); Own IP Address : 192.168.200.251  Peer IP Address : 192.168.200.201
+
+重點 關鍵字 "[H2L][UP][PPTP]"  
+
+
+
+然後 接著 你要看的事情是 192.168.200.201   他的行為 就等同於  223.666.25.248 的行為
+
+	Line     6: <141>Jun 24 18:41:14 DrayTek: ipcp offer requested IP: 192.168.200.201 from client...
+	Line     8: <158>Jun 24 18:41:14 DrayTek: IPCP Opening (VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19); Own IP Address : 192.168.200.251  Peer IP Address : 192.168.200.201
+	Line     9: <141>Jun 24 18:41:14 DrayTek: IPCP Opening (VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19); Own IP Address : 192.168.200.251  Peer IP Address : 192.168.200.201
+	Line    10: <150>Jun 24 18:41:15 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire www.1.com
+	Line    11: <150>Jun 24 18:41:15 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201:55169 -> 203.666.81.41:80 (TCP)Web
+	Line    13: <150>Jun 24 18:41:15 DrayTek: Local User: 203.69.666.41:80 -> 192.168.200.201:55169 (TCP) close connection
+	Line    66: <150>Jun 24 18:41:25 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire 2.hp.com
+	Line    67: <150>Jun 24 18:41:25 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201:55175 -> 23.666.196.81:443 (TCP) 
+	Line   256: <150>Jun 24 18:41:59 DrayTek: Local User (MAC=00-00-YY-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire erpw92.1.com.tw
+	Line   257: <150>Jun 24 18:41:59 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201:55177 -> 61.666.176.173:8083 (TCP) 
+	Line   370: <150>Jun 24 18:42:24 DrayTek: Local User (MAC=YY-00-00-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire api.1.com
+	Line   371: <150>Jun 24 18:42:24 DrayTek: Local User (MAC=00-00-YY-FD-FF-03): 192.168.200.201:55180 -> 150.666.27.12:443 (TCP) 
+	Line   377: <150>Jun 24 18:42:26 DrayTek: Local User (MAC=00-YY-00-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire 2.msn.com
+	Line   392: <150>Jun 24 18:42:27 DrayTek: Local User (MAC=00-00-YY-FD-FF-03): 192.168.200.201 DNS -> 192.168.210.31 inquire 3.msn.com
+
+
+這邊可以看到他的網卡是 00-YY-00-FD-FF-03 
+
+
+最後 要斷線的時候 會出現 下列 
+<141>Jun 24 19:30:13 DrayTek: [PPTP][Local][2:sales_group][@223.666.25.248] pppShutdown
+<181>Jun 24 19:30:13 DrayTek: [DHCP] Vigor DHCP server has recycled an IP [MAC: 00-00-00-00-00-OO, IP: 192.168.200.201]
+<141>Jun 24 19:30:13 DrayTek: PPTP (VPN-0) ==> Protocol:LCP(c021) TermReq Identifier:0x02  ##
+<129>Jun 24 19:30:13 DrayTek: PPP Drop VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19
+<141>Jun 24 19:30:13 DrayTek: PPP Drop VPN : Remote Dial-in User, Profile index = 2, Name = sales_group, ifno=19
+<141>Jun 24 19:30:13 DrayTek: [H2L][DOWN][PPTP][@2:sales_group from 223.666.25.248](total time connected : 0 hours 48 minutes 58 seconds)
+
+關鍵字 "[H2L][DOWN][PPTP]"  "pppShutdown"
