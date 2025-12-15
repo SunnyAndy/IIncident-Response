@@ -30,6 +30,19 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
 
 
 
+****************************************** Event Log 區 *******************************************
+windows 11 裡面 預設 event log 的位置 在  
+C:\windows\System32\winevt\Logs
+
+%systemroot%\system32\winevt\logs\
+
+如果說呢 要把 event log 通通弄成 文字檔 再用 control f 亂搜一通 
+
+可以使用 evtx
+
+
+
+
 
 
 ********************************************   擷取、分析指令參考 ****************************************
@@ -42,15 +55,11 @@ which is a privileged and restricted portion of the operating system that contai
 peripherals, implement security controls and schedule and control processes acting on behalf of a user.
 
 
-
 event explore    會 自動 調整 時區 
 
 
 Amcache analysis : 預設 UTC +0 
 AmcacheParser.exe -f "C:\Temp\amcache\AmcacheWin10.hve" --csv C:\temp
-
-
-
 
 
 Shimcache cache analysis :  預設 UTC +0 
