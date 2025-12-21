@@ -151,6 +151,16 @@ usally the %winDir%  is C:\Windows\
 
 
 
+
+************************************  windows 上面用  apache 等工具進行架站 ****************************
+可以先找她的 conf 檔案位置，讀取裡面的內容
+AppServ\Apache24\conf\httpd.conf
+
+
+
+
+
+
 ************************************   Windows Memory Capture   參考 ************************************
 龍哥推薦:
 https://belkasoft.com/ram-capture
