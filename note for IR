@@ -12,6 +12,18 @@ for %%f in (%PCAP_DIR%\hosting_0350*) do (
     %TSHARK% -r "%%f" -T fields -e ip.src -e ip.dst | findstr %TARGET_IP%
 )
 
+**************************************** TCP replay  *****************************************
+
+
+sudo tcpreplay      -i  ens33 -M 1000 ~/share_folder/temp_00000_20250613224542.pcap
+
+ens33 要與 ddi 之類的同一個網段
+
+如果需要看進度條的話 請使用 nload 之類的工具 
+
+
+
+
 
 ***************************************  IIS 使用 logparser *****************************
 
