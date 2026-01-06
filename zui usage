@@ -5,6 +5,34 @@ command
 brimcap 載點:
 https://github.com/brimdata/brimcap/releases
 
+echo 'export PATH=$PATH:/opt/zeek/bin' >> ~/.bashrc
+
+
+running script 
+test@test-machine:~/share_folder$ cat zeek_script.sh 
+cd ~/share_folder/zeek_logs
+**********************************************************
+for f in ~/share_folder/hosting_from_114_10_16_to_114_12_11/1141016/hosting*; do
+    echo "正在分析: $f"
+    zeek -C -r "$f"
+done
+******************************************************
+
+
+
+
+zeek 使用  ubuntu 環境建置 
+   curl -fsSL https://download.opensuse.org/repositories/security:zeek/xUbuntu_$(lsb_release -rs)/Release.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/zeek.gpg 
+   echo "deb http://download.opensuse.org/repositories/security:/zeek/xUbuntu_$(lsb_release -rs)/ /" | sudo tee /etc/apt/sources.list.d/zeek.list
+   sudo apt-get update 
+   sudo apt-get install zeek-6.0
+
+
+
+
+
+
+
 Step 2 if the pcap is too huge pleasw use the editpcap to divid it 
 "C:\Program Files\Wireshark\editcap.exe" -c 200000 input.pcap output.pcap 
   ref :https://microchip.my.site.com/s/article/Split-large-PCAP-file-into-smaller-PCAP-files
