@@ -20,7 +20,6 @@ done
 
 
 
-
 zeek 使用  ubuntu 環境建置 
    curl -fsSL https://download.opensuse.org/repositories/security:zeek/xUbuntu_$(lsb_release -rs)/Release.key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/zeek.gpg 
    echo "deb http://download.opensuse.org/repositories/security:/zeek/xUbuntu_$(lsb_release -rs)/ /" | sudo tee /etc/apt/sources.list.d/zeek.list
@@ -78,3 +77,21 @@ https://docs.zeek.org/en/current/scripts/base/protocols/conn/main.zeek.html
 
 
  fuse |  id.resp_p!=53  | id.resp_p!=123  | conn_state=="SF"   or  conn_state=="S1"  or conn_stat=="S2" or conn_stat=="S3" |   geo.orig.country_code!="TW"   or  geo.resp.country_code!="TW"
+
+
+
+
+
+
+
+**********************************************************************************************************
+使用 suricata 在 linux 下面進行 快速掃描檢測 
+
+
+659  sudo apt upsudo apt install suricata -y
+ 1660  sudo apt install suricata -y 
+ 1661  sudo suricata-update 
+ 1666  mkdir suricata_report 
+ 1668  sudo suricata -r ~/share_folder/hosting_from_114_10_16_to_114_12_11/1141016/hosting_00928_20251117013012 -l suricata_report 
+ 1669  sudo suricata -S /var/lib/suricata/rules/suricata.rules -r ~/share_folder/hosting_from_114_10_16_to_114_12_11/1141016/hosting_00928_20251117013012 -l /suricata_report
+ 1670  sudo suricata -S /var/lib/suricata/rules/suricata.rules -r ~/share_folder/hosting_from_114_10_16_to_114_12_11/1141016/hosting_00928_20251117013012 -l  suricata_report
