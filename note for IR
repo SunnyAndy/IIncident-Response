@@ -94,9 +94,9 @@ AmcacheParser.exe -f "C:\Temp\amcache\AmcacheWin10.hve" --csv C:\temp
 AppCompatCacheParser 也就是所謂的 Shimcache 他會去 讀 system 機器馬 把裡面的資訊讀出來  
 Shimcache cache analysis :  預設 UTC +0 
 有KAPE版本: 
-.\kape.exe --msource K:\ --mdest E:\1142009361\260116_keway\post_processing\AppCompatCacheParser --mflush --module AppCompatCacheParser --gui
+.\kape.exe --msource K:\ --mdest E:\1142009361\260116_kay\post_processing\AppCompatCacheParser --mflush --module AppCompatCacheParser --gui
 如果自己用 CMD可以用下面:
-AppCompatCacheParser.exe -f  SYSTEM  --csv E:\manila_analysis\ --csf E:\manila_analysis\shimcache.csv
+AppCompatCacheParser.exe -f  SYSTEM  --csv E:\ma_analysis\ --csf E:\manila_analysis\shimcache.csv
 
 *********************************************** End of Amcache Analysis********************************
 
@@ -110,14 +110,14 @@ PECmd.exe -d   "E:\0719\Collection_SYOUNG2\Prefetch"   --csv E:\0719\analysis\pr
 
 ******************************** 機碼  與 執行 相關的 hive ************************************************
 這邊偷懶 直接使用  REcmd 裡面的 KAPE  建議把 "G:\2_Triage\KAPE-windows\Modules\bin\RECmd\BatchExamples\RECmd_Batch_MC.reb" 的內容讀過一遍 
-.\kape.exe --msource K:\ --mdest E:\1142009361\260116_keway\post_processing\RECMD_ALL --mflush --gui 
+.\kape.exe --msource K:\ --mdest E:\1142009361\260116_ky\post_processing\RECMD_ALL --mflush --gui 
 **********************************************************************************************************
 
 
 *********************************** JLECmd  看 jumplist ************************************
 說明:  Automatic and Custom Destinations jump list parser
 用KAPE :
-.\kape.exe --msource K:\ --mdest E:\1142009361\260116_keway\post_processing\JLECmd --mflush --module JLECmd --gui
+.\kape.exe --msource K:\ --mdest E:\1142009361\260116_k\post_processing\JLECmd --mflush --module JLECmd --gui
 自己用CMD:
 JLECmd.exe -d  E:\0719\ --csv  E:\0719\analysis\JLECMD   --csvf E:\0719\analysis\JLECMD\jls.csv
 REF:https://github.com/EricZimmerman/JumpList/blob/master/JumpList/Resources/AppIDs.txt
@@ -133,10 +133,10 @@ RBCmd.exe -d  E:\0719\Collection_SYOUNG2\RecycleBin   --csv E:\0719\analysis\rec
 
 
 shell bag
-SBECmd.exe   -d E:\0719\Collection_SYOUNG2\Registry\  --csv E:\0719\analysis\SBESHELL\  --csvf E:\0719\analysis\SBESHELL\sbeshell.csv
+SBECmd.exe   -d E:\0719\Collection_NG2\Registry\  --csv E:\0719\analysis\SBESHELL\  --csvf E:\0719\analysis\SBESHELL\sbeshell.csv
 
 srum   「SRUM: Forensic Analysis of Windows System Resource Utilization Monitor」
-SrumECmd.exe -d  "E:\0719\Collection_SYOUNG2\SRUM"   --csv E:\0719\analysis\SRUM  --csvf E:\0719\analysis\SRUM\Srum.csv
+SrumECmd.exe -d  "E:\0719\Collection_NG2\SRUM"   --csv E:\0719\analysis\SRUM  --csvf E:\0719\analysis\SRUM\Srum.csv
 
 
 
