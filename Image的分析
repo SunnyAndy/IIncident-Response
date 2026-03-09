@@ -1,0 +1,35 @@
+確認主機的hostname: 
+機碼:
+HKLM\SYSTEM\ControlSet00x\Control\ComputerName\ComputerName
+
+
+  
+使用工具:
+rip -r E:\Case\1142009361\KSpolice\registry_KS\SYSTEM -p compname
+
+網路 IP:等資訊
+(System 機碼) 
+HKLM\System\ControlSet00x\Services\Tcpip\Parameters\Interfaces\
+rip.exe -r  E:\Case\ddddd\dddd\reg\SYSTEM -p nic2
+
+  
+網卡資訊
+HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkCards\
+
+還在研究中
+
+
+
+作業系統資訊
+HKLM\Software\Microsoft\Windows NT\CurrentVersion\下面一堆
+
+  rip.exe -r [SOFTWARE檔案路徑] -p winver
+  rip.exe -r  E:\Case\1142009361\KSpolice\registry_KS\SOFTWARE -p winver
+
+
+
+
+
+Event Log :
+EvtxHussar 
+  
