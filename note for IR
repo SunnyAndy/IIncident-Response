@@ -1,3 +1,15 @@
+
+**********************************  ova to vmdk **************************************
+方法二：使用 7-Zip 解壓縮
+下載並安裝 7-Zip。
+右鍵點擊 .ova 檔案，選擇 7-Zip -> 提取檔案。
+解壓後會得到一個 .ovf 和一個 .vmdk 檔案。
+開啟 VMware，點選 "File" -> "Open" 選擇 .ovf 檔來匯入
+
+
+********************************************************************
+
+
 ************************************** 用 tshark 快速 過濾 封包  ******************************
 H:\Temp_Packet>type checks.bat
 @echo off
@@ -5,7 +17,7 @@ setlocal enabledelayedexpansion
 
 set TSHARK="C:\Program Files\Wireshark\tshark.exe"
 set PCAP_DIR=H:\Temp_Packet
-set TARGET_IP=211.79.190.23
+set TARGET_IP=211.XXX.XXX.23
 
 for %%f in (%PCAP_DIR%\hosting_0350*) do (
     echo === Processing: %%f ===
