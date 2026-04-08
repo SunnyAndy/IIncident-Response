@@ -82,6 +82,18 @@ https://docs.zeek.org/en/current/scripts/base/protocols/conn/main.zeek.html
 
 
 
+其餘 新招 :
+d.resp_p==443 | count() by server_name | sort -r count
+
+
+如果要看字串的話 
+ "220.133.XX.XX:8081" id.orig_h!=192.168.50.1 uri!="/api/XXXXn_status.php" status_code==200 | uri=="/phpmyadmin/imXXXX.php"
+
+
+目前 有已知 欄位是 _path , service 可以利用  count() by service  列舉
+
+
+
 
 
 **********************************************************************************************************
