@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: 1. 設定目標 IP
-set TARGET_IP=59.124.69.100
+set TARGET_IP=1.2.3.4
 
 :: 2. 設定輸出結果的路徑 (建議給絕對路徑)
 set FINAL_OUTPUT=C:\pcap_result\b.pcap
