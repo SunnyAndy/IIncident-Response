@@ -1,0 +1,34 @@
+@echo off
+setlocal enabledelayedexpansion
+
+:: 1. 設定目標 IP
+set TARGET_IP=59.124.69.100
+
+:: 2. 設定輸出結果的路徑 (建議給絕對路徑)
+set FINAL_OUTPUT=C:\pcap_result\b.pcap
+
+:: 3. 設定臨時存放過濾結果的資料夾
+set TEMP_DIR=C:\temp_filtered
+if not exist "%TEMP_DIR%" mkdir "%TEMP_DIR%"
+if not exist "C:\pcap_result" mkdir "C:\pcap_result"
+
+echo 正在掃描並過濾封包...
+
+:: 4. 這裡使用 /r 來遞迴搜尋子資料夾 (包含 "keyway_封包" 等中文路徑)
+:: %%~nf 是取得不含路徑與副檔名的檔名
+for /r "J:\Case_RAW_Data\114_2009_361\KeyWay\packet\keyway_封包\20260121\" %%f in (*.pcap) do (
+    echo 處理檔案: "%%~nxf"
+    
+    :: 使用 tshark 讀取原始檔，並存到本地 TEMP 轉存區，檔名加上隨機數或計數避免重複
+    "C:\Program Files\Wireshark\tshark" -r "%%f" -Y "ip.addr == %TARGET_IP%" -w "%TEMP_DIR%\%%~nf_filtered.pcap"
+)
+
+:: 5. 合併所有過濾後的檔案
+echo ---------------------------------------
+echo 正在合併所有結果至 %FINAL_OUTPUT%...
+
+"C:\Program Files\Wireshark\mergecap" -w "%FINAL_OUTPUT%" "%TEMP_DIR%\*.pcap"
+
+echo ---------------------------------------
+echo 完成！請至 %FINAL_OUTPUT% 查看結果。
+pause
