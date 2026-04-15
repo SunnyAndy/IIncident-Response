@@ -16,7 +16,7 @@ echo 正在掃描並過濾封包...
 
 :: 4. 這裡使用 /r 來遞迴搜尋子資料夾 (包含 "keyway_封包" 等中文路徑)
 :: %%~nf 是取得不含路徑與副檔名的檔名
-for /r "J:\Case_RAW_Data\114_2009_361\KeyWay\packet\keyway_封包\20260121\" %%f in (*.pcap) do (
+for /r "J:\Case_RAW_Data\222222\11111\packet\111111\20260121\" %%f in (*.pcap) do (
     echo 處理檔案: "%%~nxf"
     
     :: 使用 tshark 讀取原始檔，並存到本地 TEMP 轉存區，檔名加上隨機數或計數避免重複
