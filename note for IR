@@ -117,6 +117,16 @@ AppCompatCacheParser.exe -f  SYSTEM  --csv E:\ma_analysis\ --csf E:\manila_analy
 .\kape.exe --msource K:\ --mdest E:\output_location_PEcmd  --mflush --module PECmd --gui
 或用 艾瑞克的指令:
 PECmd.exe -d   "E:\0719\Collection_SYOUNG2\Prefetch"   --csv E:\0719\analysis\prefetch --csvf E:\0719\analysis\prefetch\pre.csv
+
+
+他可能沒有開啟功能 
+查看方式 請看這個姬瑪 
+HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters
+0 停用
+1 儘應用程式
+2.儘開機
+3.開機和應用程式
+
 **************************************************************************************************************
 
 
