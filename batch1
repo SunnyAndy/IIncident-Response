@@ -1,6 +1,53 @@
+####  我是註解########
+當進行事件調查的時候 
+通常可以分為下列的邏輯分析
+1.惡意程式當下正在跑
+  看 process explore 
+  掃記憶體 
+  用 sonar 
+  tcpview 
+  autorun 
+  等等  這一部分沒有腳本， 要靠經驗 
+  要收的DATA 系  autoruns  
+  tcpview 
+  
+2.如果惡意程式沒有當下跑起來 那就要考慮 這台受害主機是否曾經跑起來過
+  曾經跑起來過的話  就要看  program execution 相關跡證
+
+  AmcacheParser.exe -f %systemroot%\AppCompat\Programs\Amcache.hve --csv .\Result\AmcacheParser_result\ 
+  \kape.exe --mflush --module AmcacheParser --gui
+  
+  AppCompatCacheParser.exe --csv .\Result\AppCompatCacheParser_result\ 
+  .\kape.exe --mflush --module AppCompatCacheParser  --gui
+  
+  JLECmd.exe  -d %Appdata%\Microsoft\Windows\Recent\AutomaticDestinations    --csv  .\Result\JLE
+  .\kape.exe --mflush --module JLECmd --gui
+
+  RBCmd.exe -d %systemdrive%\$Recycle.Bin --csv .\Result\RecycleBin
+  .\kape.exe --mflush --module RBCmd --gui
+
+  ShellBagsExplorer\SBECmd.exe    -d %systemdrive%  --csv .\Result\Shellbag\
+  .\kape.exe --mflush --module SBECmd --gui
+  
+  LECmd.exe  -d  %systemdrive%  --csv .\Result\LECMD
+  .\kape.exe --mflush --module LECmd --gui
+ 
+  WxTCmd.exe  -f  %UserProfile%\Appdata\Local\ConnectedDevicesPlatform\L.Alex\ActivitiesCache.db  --csv .\Result\WxTCmd
+  .\kape.exe --mflush --module WxTCmd --gui
+  
+  RegistryExplorer\RECmd.exe  --bn RegistryExplorer\BatchExamples\InstalledSoftware.reb --d "F:\Windows\Andy_REG"     --csv  out
+  .\kape.exe --mflush --module RECmd_AllBatchFiles --gui
+
 REM Andy's script for Windows  evidence collection  
 ::  this file is used to Digital Forensics 
 @echo off
+
+
+
+.\kape.exe --msource H:\ --mdest E:\CASE\Tai-Chung --mflush --module  AmcacheParser,AppCompatCacheParser,JLECmd,RBCmd,SBECmd,LECmd,WxTCmd,RECmd_AllBatchFiles 
+
+
+r
 
 
 
