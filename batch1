@@ -38,6 +38,10 @@
   RegistryExplorer\RECmd.exe  --bn RegistryExplorer\BatchExamples\InstalledSoftware.reb --d "F:\Windows\Andy_REG"     --csv  out
   .\kape.exe --mflush --module RECmd_AllBatchFiles --gui
 
+
+   Prefetch  檔案 調查
+   .\Kape.exe --mflush --module PECmd --gui
+
 REM Andy's script for Windows  evidence collection  
 ::  this file is used to Digital Forensics 
 @echo off
